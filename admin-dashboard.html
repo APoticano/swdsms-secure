@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   digitalEl.textContent = '—';
 
   try{
-    const res = await fetch('/api/reports');
+    const res = await fetch('https://swdsms-secure.onrender.com/api/reports');
     if(!res.ok) throw new Error('Failed to load reports');
     const reports = await res.json();
 
