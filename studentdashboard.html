@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try{
-      const res = await fetch('/api/reports', {
+          const res =await fetch('https://swdsms-secure.onrender.com/api/report', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ Name: realname, Codename: codename, Grade: grade, Type: type, Date: date, Description: description })
