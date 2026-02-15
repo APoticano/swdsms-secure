@@ -40,7 +40,10 @@ async function writeDb(data) {
 }
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://swdsms-secure.netlify.app",
+  credentials: true
+}));
 // simple request logger to help debug 405s and routing issues
 app.use((req, res, next) => {
   console.log(new Date().toISOString(), req.method, req.originalUrl);
