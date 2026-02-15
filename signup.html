@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SWDSMS Signup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FontAwesome for eye icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#CFEFF6;
+  --dark:#20373B;
+  --primary:#5AA6B5;
+  --white:#ffffff;
+  --text:#0f2f36;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", sans-serif;
+}
+
+html, body{
+  height:100%;
+}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===== PAGE ===== */
+.page-container{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===== CARD ===== */
+.card{
+  width:1000px;
+  min-height:550px;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* ===== LEFT PANEL ===== */
+.left-panel{
+  width:50%;
+  background:#1f3438;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px;
+}
+
+.brand-box{
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.logo-circle{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:20px;
+}
+
+.logo-circle img{
+  width:45px;
+  height:45px;
+}
+
+.brand-box h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.brand-box p{
+  max-width:300px;
+  line-height:1.6;
+  opacity:0.9;
+}
+
+/* ===== RIGHT PANEL ===== */
+.right-panel{
+  width:50%;
+  padding:60px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.right-panel h2{
+  font-size:28px;
+  margin-bottom:20px;
+  color:var(--text);
+  text-align:center;
+}
+
+.right-panel input,
+.right-panel select{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:14px;
+  outline:none;
+}
+
+/* ===== PASSWORD ===== */
+.password-wrap{
+  position:relative;
+  width:100%;
+}
+
+.password-wrap input{
+  padding-right:45px;
+}
+
+.eye-toggle{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  font-size:16px;
+  color:#888;
+}
+
+.eye-toggle:hover{
+  color:#333;
+}
+
+/* ===== BUTTON ===== */
+.right-panel button{
+  margin-top:10px;
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  background:var(--primary);
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.right-panel button:hover{
+  background:#3f8f9e;
+}
+
+/* ===== LOGIN TEXT ===== */
+.login-text{
+  margin-top:15px;
+  font-size:13px;
+  text-align:center;
+}
+
+.login-text a{
+  color:var(--primary);
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .card{
+    flex-direction:column;
+    width:90%;
+  }
+
+  .left-panel,
+  .right-panel{
+    width:100%;
+  }
+}
+
+/* ===== TOAST / SWEET POPUP ===== */
+#toast{ position: fixed; right: 20px; bottom: 28px; z-index: 9999; min-width:220px; }
+.toast{ padding:12px 16px; border-radius:10px; color:#fff; box-shadow:0 8px 24px rgba(0,0,0,0.15); font-weight:700; text-align:center; }
+.toast.success{ background: linear-gradient(90deg,#2ecc71,#27ae60); }
+.toast.error{ background: linear-gradient(90deg,#e74c3c,#c0392b); }
+.toast.info{ background: linear-gradient(90deg,#3498db,#2c82c9); }
+</style>
+</head>
+
+<body>
+
+<div class="page-container">
+  <div class="card">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+      <div class="brand-box">
+        <div class="logo-circle">
+          <img src="logo.png" alt="logo">
+        </div>
+        <h1>SWDSMS</h1>
+        <p>Student Welfare & Digital Safety Monitoring System</p>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+      <h2>Sign Up</h2>
+
+      <label for="role">Role</label>
+      <select id="role" aria-label="Role">
+        <option value="">Select Role</option>
+        <option value="teacher">Teacher/Guidance</option>
+        <option value="student">Student/Parent</option>
+      </select>
+
+      <input type="text" placeholder="First Name" id="firstname">
+      <input type="text" placeholder="Last Name" id="lastname">
+      <input type="text" placeholder="Username" id="username">
+      <input type="email" placeholder="Email" id="email">
+
+      <div class="password-wrap">
+        <input type="password" placeholder="Password" id="password">
+        <span class="eye-toggle" onclick="togglePassword('password', this)">
+          <i class="fa-solid fa-eye"></i>
+        </span>
+      </div>
+
+      <div class="password-wrap">
+        <input type="password" placeholder="Confirm Password" id="confirmPassword">
+        <span class="eye-toggle" onclick="togglePassword('confirmPassword', this)">
+          <i class="fa-solid fa-eye"></i>
+        </span>
+      </div>
+
+      <button id="signupBtn">Create Account</button>
+
+      <p class="login-text">
+        Already have an account? <a href="login.html">Login</a>
+      </p>
+
+      <!-- Toast / Sweet popup -->
+      <div id="toast" aria-live="polite"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("signupBtn").addEventListener("click", async function(e){
+  e.preventDefault();
+
+  const role = document.getElementById("role").value;
+  const firstname = document.getElementById("firstname").value.trim();
+  const lastname = document.getElementById("lastname").value.trim();
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if(!role || !firstname || !lastname || !username || !email || !password || !confirmPassword){
+    showToast('Please fill in all fields.', 'error');
+    return;
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailPattern.test(email)){
+    showToast('Please enter a valid email address.', 'error');
+    return;
+  }
+
+  if(password.length < 6){
+    showToast('Password must be at least 6 characters.', 'error');
+    return;
+  }
+
+  if(password !== confirmPassword){
+    showToast('Passwords do not match.', 'error');
+    return;
+  }
+
+  try{
+    const res = await fetch('/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role, firstname, lastname, username, email, password })
+    });
+
+    if(!res.ok){
+      let errBody = null;
+      try{ errBody = await res.json(); }catch(_){ errBody = { error: res.statusText || 'Signup failed' }; }
+      showToast((errBody && errBody.error) || 'Signup failed', 'error');
+      return;
+    }
+
+    // Sweet popup — show message then redirect to login page
+    showToast("You're now registered", 'success');
+
+    // redirect to login after short delay so user sees the popup
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 1200);
+
+  }catch(err){
+    console.error(err);
+    showToast('Server error — try again', 'error');
+  }
+});
+
+/* ===== PASSWORD TOGGLE ===== */
+
+/* ===== PASSWORD TOGGLE ===== */
+function togglePassword(inputId, iconSpan){
+  const input = document.getElementById(inputId);
+  const icon = iconSpan.querySelector("i");
+
+  if(input.type === "password"){
+    input.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  }else{
+    input.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  }
+}
+
+// toast helper
+function showToast(message, type = 'info'){
+  let toast = document.getElementById('toast');
+  if(!toast) return alert(message);
+  toast.innerHTML = `<div class="toast ${type}">${message}</div>`;
+  setTimeout(()=>{ toast.innerHTML = ''; }, 2600);
+}
+</script>
+
+</body>
+</html>

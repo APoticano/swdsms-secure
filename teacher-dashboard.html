@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SWDSMS | Teacher Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ============================= */
+/* 🎨 VARIABLES */
+/* ============================= */
+:root {
+  --chambray: #79A3C3;
+  --espresso: #3A2119;
+  --glacier: #D2E2EC;
+  --bisque: #EBCDB7;
+  --clay: #957662;
+
+  --primary-bg: var(--glacier);
+  --secondary-bg: var(--chambray);
+  --sidebar-bg: var(--espresso);
+  --card-bg: #ffffff;
+  --accent: var(--clay);
+  --accent-soft: var(--bisque);
+  --text-dark: #2a1a14;
+  --text-light: #ffffff;
+  --border-soft: #e6e1dd;
+}
+
+/* ============================= */
+/* GLOBAL */
+/* ============================= */
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  margin:0;
+  background:var(--primary-bg);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ============================= */
+/* TOPBAR */
+/* ============================= */
+.topbar{
+  height:70px;
+  background:var(--sidebar-bg);
+  color:var(--text-light);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 30px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.25);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:22px;
+  font-weight:700;
+}
+
+.brand img{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+}
+
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.user-info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(255,255,255,0.12);
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:600;
+  font-size:14px;
+}
+
+.user-info img{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:white;
+  padding:4px;
+}
+
+.logout-btn{
+  background:var(--accent);
+  border:none;
+  padding:10px 22px;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.logout-btn:hover{
+  background:var(--chambray);
+}
+
+/* ============================= */
+/* LAYOUT */
+/* ============================= */
+.layout{
+  display:flex;
+  flex:1;
+}
+
+/* ============================= */
+/* SIDEBAR */
+/* ============================= */
+.sidebar{
+  width:240px;
+  background:var(--sidebar-bg);
+  color:white;
+  padding-top:30px;
+  display:flex;
+  flex-direction:column;
+}
+
+.sidebar a{
+  text-decoration:none;
+  color:white;
+  padding:14px 25px;
+  display:block;
+  transition:.3s;
+  border-left:4px solid transparent;
+}
+
+.sidebar a:hover{
+  background:rgba(255,255,255,0.08);
+  border-left:4px solid var(--accent-soft);
+}
+
+.sidebar a.active{
+  background:rgba(255,255,255,0.12);
+  border-left:4px solid var(--accent-soft);
+  font-weight:600;
+}
+
+/* ============================= */
+/* CONTENT */
+/* ============================= */
+.content{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  padding:40px 20px;
+}
+
+.page-container{
+  width:100%;
+  max-width:1150px;
+}
+
+.dashboard-card{
+  background:white;
+  border-radius:22px;
+  padding:35px 40px;
+  box-shadow:0 12px 30px rgba(58,33,25,0.15);
+}
+
+.dashboard-title{
+  margin:0 0 25px 0;
+  font-size:24px;
+  font-weight:700;
+  color:var(--text-dark);
+}
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+.complaints-table{
+  width:100%;
+  border-collapse:collapse;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.complaints-table th{
+  background:var(--accent-soft);
+  padding:16px 14px;
+  text-align:left;
+}
+
+.complaints-table td{
+  padding:16px 14px;
+  border-bottom:1px solid var(--border-soft);
+}
+
+.complaints-table tr:hover{
+  background:var(--glacier);
+}
+
+/* ============================= */
+/* STATUS */
+/* ============================= */
+.status{
+  padding:6px 18px;
+  border-radius:999px;
+  font-weight:600;
+}
+
+.status.pending{
+  background:var(--bisque);
+  color:var(--espresso);
+}
+
+.status.solved{
+  background:var(--chambray);
+  color:white;
+}
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+.mark-btn{
+  padding:8px 16px;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+  cursor:pointer;
+  font-weight:700;
+  transition:.3s;
+}
+
+.mark-btn:hover{
+  background:var(--chambray);
+}
+
+.done-text{
+  color:var(--accent);
+  font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" alt="SWDSMS logo">
+    SWDSMS
+  </div>
+
+  <div class="user-area">
+    <div class="user-info">
+      <img src="user-icon.jpg" alt="Teacher avatar">
+      <span>Teacher Dashboard</span>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <a href="#" class="active">Complaints Status</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+<div class="page-container">
+
+<div class="dashboard-card">
+<h2 class="dashboard-title">Complaints / Incident Status</h2>
+
+<table class="complaints-table">
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Codename</th>
+  <th>Grade</th>
+  <th>Type</th>
+  <th>Description</th>
+  <th>Date</th>
+  <th>Status</th>
+  <th>Action</th>
+</tr>
+</thead>
+
+<tbody id="complaintsBody">
+</tbody>
+</table>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async ()=>{
+  const tableBody = document.getElementById("complaintsBody");
+  let reports = [];
+
+  function renderTable(){
+    tableBody.innerHTML="";
+
+    if(reports.length===0){
+      tableBody.innerHTML=`<tr><td colspan="6" style="text-align:center;">No reports</td></tr>`;
+      return;
+    }
+
+    reports.forEach((rep)=>{
+      const tr=document.createElement("tr");
+      const name = rep.name || rep.Name || 'N/A';
+      const codename = rep.codename || rep.Codename || '';
+      const grade = rep.grade || rep.Grade || 'N/A';
+      const type = rep.type || rep.Type || 'N/A';
+      const description = rep.description || rep.Description || 'N/A';
+      const date = rep.date || rep.Date || 'N/A';
+      const status = rep.status || rep.Status || 'Pending';
+      const isSolved = status === 'Solved';
+
+      tr.innerHTML=`
+        <td>${name}</td>
+        <td>${codename || '-'}</td>
+        <td>${grade}</td>
+        <td>${type}</td>
+        <td>${description}</td>
+        <td>${date}</td>
+        <td>
+          <span class="status ${isSolved?'solved':'pending'}">
+            ${status}
+          </span>
+        </td>
+        <td>
+          ${
+            !isSolved 
+            ? `<button class="mark-btn" data-id="${rep.id}">Mark Solved</button>`
+            : `<span class="done-text">✔ Done</span>`
+          }
+        </td>
+      `;
+      tableBody.appendChild(tr);
+    });
+
+    document.querySelectorAll('.mark-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = e.currentTarget.getAttribute('data-id');
+        try{
+          const res = await fetch(`/api/reports/${id}/solve`, { method: 'PUT' });
+          if(!res.ok){
+            if(res.status === 405) return showToast('Method Not Allowed (server)', 'error');
+            throw new Error('Failed');
+          }
+          const updated = await res.json();
+          // update local copy
+          reports = reports.map(r => r.id === updated.id ? updated : r);
+          renderTable();
+        }catch(err){
+          console.error(err);
+          showToast && showToast('Unable to mark solved', 'error');
+        }
+      });
+    });
+  }
+
+  async function load(){
+    try{
+      const res = await fetch('/api/reports');
+      reports = await res.json();
+      renderTable();
+    }catch(err){
+      console.error(err);
+      tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#c00;">Failed to load reports</td></tr>`;
+    }
+  }
+
+  window.logout=function(){
+    location.href="index.html";
+  }
+
+  await load();
+});
+</script>
+
+</body>
+</html>
