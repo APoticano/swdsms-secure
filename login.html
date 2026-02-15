@@ -200,7 +200,7 @@
         <h2>Login</h2>
 
         <!-- ROLE -->
-        <input type="text" id="role" placeholder="Enter role (admin/teacher/student/parent)">
+        <input type="text" id="role" placeholder="Enter role (Teacher/Student/Parent)">
 
         <!-- USERNAME -->
         <input type="text" id="username" placeholder="Username">
@@ -239,7 +239,7 @@
         }
 
         try {
-          const res = await fetch('/api/login', {
+          const res =await fetch('https://swdsms-secure.onrender.com/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ role, username, password })
