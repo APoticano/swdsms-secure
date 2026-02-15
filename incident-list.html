@@ -364,7 +364,7 @@ function renderTable(data){
 
 async function loadReports(){
   try{
-    const res = await fetch('/api/reports');
+    const res = await fetch('https://swdsms-secure.onrender.com/api/reports');
     const reports = await res.json();
 
     let filtered = reports;
