@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
       btn.addEventListener('click', async (e) => {
         const id = e.currentTarget.getAttribute('data-id');
         try{
-          const res = await fetch(`/api/reports/${id}/solve`, { method: 'PUT' });
+          const res = await fetch(`https://swdsms-secure.onrender.com/api/reports/${id}/solve`, { method: 'PUT' });
           if(!res.ok){
             if(res.status === 405) return showToast('Method Not Allowed (server)', 'error');
             throw new Error('Failed');
@@ -378,7 +378,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 
   async function load(){
     try{
-      const res = await fetch('/api/reports');
+      const res = await fetch('https://swdsms-secure.onrender.com/api/reports');
       reports = await res.json();
       renderTable();
     }catch(err){
