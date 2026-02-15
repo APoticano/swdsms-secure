@@ -299,7 +299,7 @@ document.getElementById("signupBtn").addEventListener("click", async function(e)
   }
 
   try{
-    const res = await fetch('/api/signup', {
+    const res = await fetch('https://swdsms-secure.onrender.com/api/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ role, firstname, lastname, username, email, password })
