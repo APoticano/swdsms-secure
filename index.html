@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWDSMS | Student Incident Reporting</title>
+
+<style>
+:root{
+  --light-blue:#C3E7F1;
+  --moonstone:#519CAB;
+  --saffron:#FFC64F;
+  --gunmetal:#20373B;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:var(--light-blue);
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== HERO SECTION ===== */
+.hero{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+/* ===== LOGO BOX ===== */
+.logo-box{
+  background:white;
+  padding:40px;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  max-width:700px;
+  width:100%;
+}
+
+.logo-box img{
+  width:110px;
+  height:110px;
+  object-fit:contain;
+  border-radius:50%;
+  margin:0 auto 20px auto;
+  display:block;
+  background:var(--light-blue);
+  padding:10px;
+}
+
+.logo-box h1{
+  color:var(--gunmetal);
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.logo-box p{
+  color:#444;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:30px;
+}
+
+/* ===== BUTTONS ===== */
+.actions{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:14px 36px;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+/* Login */
+.btn-outline{
+  background:transparent;
+  border:2px solid var(--moonstone);
+  color:var(--moonstone);
+}
+
+.btn-outline:hover{
+  background:var(--moonstone);
+  color:white;
+}
+
+/* Sign Up */
+.btn-secondary{
+  background:var(--saffron);
+  color:var(--gunmetal);
+  border:none;
+}
+
+.btn-secondary:hover{
+  background:#ffb703;
+}
+
+/* ===== FOOTER ===== */
+.footer-bar{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:var(--gunmetal);
+  color:white;
+  text-align:center;
+  padding:12px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="logo-box">
+    <img src="logo.png" alt="SWDSMS Logo">
+    <h1>SWDSMS</h1>
+    <p>
+      Student Welfare & Digital Safety Monitoring System is a secure platform designed for
+      reporting, monitoring, and managing student-related incidents. It helps schools ensure
+      student safety, promote well-being, and create a safer digital and physical learning
+      environment through structured incident reporting and response tracking.
+    </p>
+
+    <div class="actions">
+      <button class="btn btn-outline" id="loginBtn">Login</button>
+      <button class="btn btn-secondary" id="signupBtn">Sign Up</button>
+    </div>
+  </div>
+</section>
+
+<div class="footer-bar">
+  © 2026 SWDSMS — Student Incident Reporting System
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loginBtn = document.getElementById("loginBtn");
+  const signupBtn = document.getElementById("signupBtn");
+
+  loginBtn.addEventListener("click", () => {
+    window.location.href = "login.html";
+  });
+
+  signupBtn.addEventListener("click", () => {
+    window.location.href = "signup.html";
+  });
+
+});
+</script>
+
+</body>
+</html>
