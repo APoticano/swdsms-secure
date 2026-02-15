@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
+const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -39,6 +40,7 @@ async function writeDb(data) {
 }
 
 app.use(express.json());
+app.use(cors());
 // simple request logger to help debug 405s and routing issues
 app.use((req, res, next) => {
   console.log(new Date().toISOString(), req.method, req.originalUrl);
